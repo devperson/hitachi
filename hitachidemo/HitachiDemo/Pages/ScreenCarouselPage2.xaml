@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lc=  "clr-namespace:HitachiDemo.Controls;assembly=HitachiDemo"
+             xmlns:model="clr-namespace:HitachiDemo.Models;assembly=HitachiDemo"
+					   x:Class="HitachiDemo.Pages.ScreensCarouselPage2">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <lc:TemplateSelector x:Key="Carouselselector">
+        <lc:TemplateSelector.Templates>                   
+          <lc:DataTemplateWrapper x:TypeArguments="model:ScreenItem">
+            <lc:DataTemplateWrapper.WrappedTemplate>
+              <DataTemplate>                
+                  <Grid>
+                    <Image Source="{Binding ImageName}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="{Binding Text}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="20" Grid.Row="0" Grid.Column="0" />                    
+                  </Grid>                
+              </DataTemplate>
+            </lc:DataTemplateWrapper.WrappedTemplate>
+          </lc:DataTemplateWrapper>          
+        </lc:TemplateSelector.Templates>
+      </lc:TemplateSelector>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <Grid RowSpacing="0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0" HeightRequest="50" BackgroundColor="Black">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="3"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition />
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="3"/>
+      </Grid.ColumnDefinitions>
+      <Button Image="backArrow.jpg" Grid.Column="1" Clicked="Back_Clicked" WidthRequest="40" />
+      <Image Source="logo.png" Grid.Column="3" WidthRequest="15"/>
+      <Label Text="Hitachi Consulting" Grid.Column="4" TextColor="White" YAlign="Center" FontSize="12"/>
+    </Grid>
+    <lc:CarouselView x:Name="carouselView" Grid.Row="1" ViewModels="{Binding Screens}" TemplateSelector="{StaticResource Carouselselector}" x:TypeArguments="model:ScreenItem" />
+  </Grid>
+</ContentPage>

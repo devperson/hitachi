@@ -211,8 +211,9 @@ namespace HitachiDemo.Pages
             var button = new Button { Text = text, FontSize=12, TextColor = Color.White, BackgroundColor = Color.Red };
             button.Clicked += (s, e) =>
             {
-                App.Locator.ScreensViewModel.SelectedScreen = App.Locator.ScreensViewModel.Screens[index];
-                this.Navigation.PushAsync(new ScreensCarouselPage(), true);
+
+                this.Navigation.PushAsync(new ScreensCarouselPage2(index), true);
+                //this.Navigation.PushAsync(new ScreensCarouselPage(index), true);
             };
             return button;
         }        
