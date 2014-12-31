@@ -32,8 +32,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Controls\CarouselView\CarouselView.cs" />
+    <Compile Include="Controls\CarouselView\TemplateSelector.cs" />
+    <Compile Include="Controls\CarouselView\Gestures.cs" />
     <Compile Include="Models\ScreenItem.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\ScreenCarouselPage2.xaml.cs">
+      <DependentUpon>ScreenCarouselPage2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ScreensCarouselPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -55,6 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ScreenCarouselPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Forms.1.3.0.6286-pre4\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.3.0.6286-pre4\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
