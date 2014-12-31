@@ -114,6 +114,7 @@
     <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="iOSDepService\GesturesContentViewRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
@@ -157,7 +158,7 @@
     <BundleResource Include="Resources\vip.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="iOSDepService\" />
+    <Folder Include="ControlsImpl\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\popup.png" />
@@ -169,5 +170,11 @@
       <Project>{B3AAAC38-6B5C-4705-BD1D-F69CACEB475B}</Project>
       <Name>HitachiDemo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backArrow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sample.jpg" />
   </ItemGroup>
 </Project>
