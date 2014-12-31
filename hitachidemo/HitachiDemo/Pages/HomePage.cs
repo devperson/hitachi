@@ -1,11 +1,12 @@
-﻿using System;
+﻿using HitachiDemo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace HitachiDemo
+namespace HitachiDemo.Pages
 {
     public class HomePage : ContentPage
     {
@@ -13,9 +14,9 @@ namespace HitachiDemo
         ContentView middleContent = new ContentView();        
 
         public HomePage()
-        {
-            
+        {            
             this.Initialize();
+            this.BindingContext = App.Locator.HomeViewModel;
         }
 
         private void Initialize()
@@ -139,12 +140,12 @@ namespace HitachiDemo
             footerLayout.RowDefinitions.Add(new RowDefinition());
             footerLayout.RowDefinitions.Add(new RowDefinition());
             footerLayout.HeightRequest = 200;
-            footerLayout.Children.Add(this.CreateFooterButton("View your account"), 0, 1, 0, 1);
-            footerLayout.Children.Add(this.CreateFooterButton("VIP Members Club"), 1, 2, 0, 1);
-            footerLayout.Children.Add(this.CreateFooterButton("Make reservations"), 2, 3, 0, 1);
-            footerLayout.Children.Add(this.CreateFooterButton("Your Favorites"), 0, 1, 1, 2);
-            footerLayout.Children.Add(this.CreateFooterButton("Messages"), 1, 2, 1, 2);
-            footerLayout.Children.Add(this.CreateFooterButton("Get a gift card"), 2, 3, 1, 2);
+            footerLayout.Children.Add(this.CreateFooterButton("View your account",0), 0, 1, 0, 1);
+            footerLayout.Children.Add(this.CreateFooterButton("VIP Members Club",1), 1, 2, 0, 1);
+            footerLayout.Children.Add(this.CreateFooterButton("Make reservations",2), 2, 3, 0, 1);
+            footerLayout.Children.Add(this.CreateFooterButton("Your Favorites",3), 0, 1, 1, 2);
+            footerLayout.Children.Add(this.CreateFooterButton("Messages",4), 1, 2, 1, 2);
+            footerLayout.Children.Add(this.CreateFooterButton("Get a gift card",5), 2, 3, 1, 2);
             return footerLayout;
         }
 
@@ -205,9 +206,15 @@ namespace HitachiDemo
             middleContent.Content = this.GetMiddleContent();
         }
 
-        private View CreateFooterButton(string text)
+        private View CreateFooterButton(string text, int index)
         {            
-            return new Button { Text = text, FontSize=12, TextColor = Color.White, BackgroundColor = Color.Red };            
-        }
+            var button = new Button { Text = text, FontSize=12, TextColor = Color.White, BackgroundColor = Color.Red };
+            button.Clicked += (s, e) =>
+            {
+                App.Locator.ScreensViewModel.SelectedScreen = App.Locator.ScreensViewModel.Screens[index];
+                this.Navigation.PushAsync(new ScreensCarouselPage(), true);
+            };
+            return button;
+        }        
     }
 }
